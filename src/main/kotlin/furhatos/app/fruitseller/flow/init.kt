@@ -13,11 +13,6 @@ val Init : State = state() {
         users.setSimpleEngagementPolicy(distanceToEngage, maxNumberOfUsers)
         furhat.voice = Voice("Matthew")
         /** start the interaction */
-        while (true) {
-            println("Jello world?")
-            furhat.say("Hello World")
-            delay(3, TimeUnit.SECONDS)
-        }
-        //goto(Idle)
+        goto(Idle)
     }
 }
