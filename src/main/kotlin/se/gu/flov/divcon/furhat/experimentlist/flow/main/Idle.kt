@@ -1,6 +1,10 @@
-package furhatos.app.fruitseller.flow.main
+package se.gu.flov.divcon.furhat.experimentlist.flow.main
 
-import furhatos.flow.kotlin.*
+import furhatos.flow.kotlin.State
+import furhatos.flow.kotlin.furhat
+import furhatos.flow.kotlin.onUserEnter
+import furhatos.flow.kotlin.state
+import furhatos.flow.kotlin.users
 
 val Idle: State = state {
 

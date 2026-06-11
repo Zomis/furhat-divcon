@@ -1,7 +1,7 @@
-package furhatos.app.fruitseller.flow
+package se.gu.flov.divcon.furhat.experimentlist.flow
 
-import furhatos.app.fruitseller.flow.main.Idle
 import furhatos.flow.kotlin.*
+import se.gu.flov.divcon.furhat.experimentlist.flow.main.Idle
 
 val Parent: State = state {
 
