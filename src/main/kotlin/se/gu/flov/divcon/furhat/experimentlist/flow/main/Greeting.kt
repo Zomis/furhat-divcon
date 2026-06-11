@@ -13,8 +13,11 @@ enum class Task {
     Joke, Balloon, Mingle,
 }
 
-enum class Condition {
-    Live, Text, Video,
+enum class Condition(private val toText: String? = null) {
+    Live("in real life"), Text, Video,
+    ;
+
+    fun text() = this.toText ?: name
 }
 
 val sessions = listOf(
@@ -40,8 +43,7 @@ fun response(furhat: Furhat, it: RunExperiment?) {
         furhat.say("No number")
         return
     }
-//        val sessionNumber = it.intent.session?.values?.indexOf(sessionValue)
-    val sessionNumber = sessionValue.toInt()
+    val sessionNumber = sessionValue.value
     if (sessionNumber == null) {
         furhat.say("No session specified.")
         return
@@ -58,9 +60,14 @@ fun response(furhat: Furhat, it: RunExperiment?) {
         val taskNumber = listOf("first", "second", "third")
         for (i in 0 until 3) {
             val combination = session[i]
-            furhat.say("${taskNumber[i]} task: ${combination.first} ${combination.second}")
+            furhat.say {
+                +"${taskNumber[i]} task: ${combination.first.text()} ${combination.second}"
+                this.delay(500)
+            }
         }
     } while (furhat.askYN("Do you want me to repeat?"))
+
+    furhat.say("Remember: Consistency across conditions!")
 }
 
 val Greeting : State = state(Parent) {
