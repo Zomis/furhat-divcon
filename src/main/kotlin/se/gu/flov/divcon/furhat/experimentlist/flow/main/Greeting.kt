@@ -73,7 +73,7 @@ fun response(furhat: Furhat, it: RunExperiment?) {
 val Greeting : State = state(Parent) {
     onEntry {
         // furhat.say("")
-        val s = furhat.askFor<RunExperiment>("Hello world. So you are running an experiment, which session are you running today?", stateDefinition = null)
+        val s = furhat.askFor<RunExperiment>("So you are running a baseline experiment, which session number are you running today?", stateDefinition = null)
         response(furhat, s)
 //        furhat.listen()
     }
