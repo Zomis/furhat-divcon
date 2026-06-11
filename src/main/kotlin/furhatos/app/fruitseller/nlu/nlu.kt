@@ -9,7 +9,7 @@ import furhatos.util.Language
 
 class Fruit : EnumEntity(stemming = true, speechRecPhrases = true) {
     override fun getEnum(lang: Language): List<String> {
-        return listOf("banana", "orange", "apple", "cherimoya")
+        return listOf("banana", "orange", "apple", "cherimoya", "session", "experiment")
     }
 }
 
@@ -32,9 +32,10 @@ class FruitList : ListEntity<QuantifiedFruit>()
 
 class QuantifiedFruit(
     var count : Number? = Number(1),
-    var fruit : Fruit? = null) : ComplexEnumEntity() {
+    var fruit : Fruit? = null
+) : ComplexEnumEntity() {
     override fun getEnum(lang: Language): List<String> {
-        return listOf("@count @fruit", "@fruit")
+        return listOf("@fruit @count")
     }
 
     override fun toText(): String {
