@@ -20,8 +20,10 @@ class SessionId : EnumEntity() {
     }
 }
 
-class RunExperiment(var session: SessionId? = null) : Intent() {
+class RunExperiment(var session: Int? = null) : Intent() {
     override fun getExamples(lang: Language): List<String> = listOf(
+        "experiment @session",
+        "",
         "i want to run experiment @session",
         "session @session",
     )
