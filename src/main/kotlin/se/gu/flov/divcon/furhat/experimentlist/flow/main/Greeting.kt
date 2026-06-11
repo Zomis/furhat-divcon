@@ -36,8 +36,12 @@ fun response(furhat: Furhat, it: RunExperiment?) {
         return
     }
     val sessionValue = it.session
+    if (sessionValue == null) {
+        furhat.say("No number")
+        return
+    }
 //        val sessionNumber = it.intent.session?.values?.indexOf(sessionValue)
-    val sessionNumber = sessionValue
+    val sessionNumber = sessionValue.toInt()
     if (sessionNumber == null) {
         furhat.say("No session specified.")
         return
@@ -62,7 +66,7 @@ fun response(furhat: Furhat, it: RunExperiment?) {
 val Greeting : State = state(Parent) {
     onEntry {
         // furhat.say("")
-        val s = furhat.askFor<RunExperiment>("So you are running an experiment, which session are you running today?", stateDefinition = null)
+        val s = furhat.askFor<RunExperiment>("Hello world. So you are running an experiment, which session are you running today?", stateDefinition = null)
         response(furhat, s)
 //        furhat.listen()
     }
