@@ -1,3 +1,6 @@
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+
 plugins {
     id("org.jetbrains.kotlin.jvm") version "1.9.24"
     id("com.github.johnrengelman.shadow") version "8.1.1"
@@ -63,4 +66,17 @@ tasks.shadowJar {
     from("assets")
 
     archiveExtension.set("skill")
+}
+
+val build = layout.buildDirectory.file("libs/divcon-experiment-list-all.skill")
+val buildDir = layout.buildDirectory.file("libs")
+
+tasks.register<Copy>("dist") {
+    dependsOn("shadowJar")
+    from(build.get())
+    into(buildDir.get())
+    rename {
+        val now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"))
+        it.replace("-all", "-$now")
+    }
 }
