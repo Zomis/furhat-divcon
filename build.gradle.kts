@@ -6,32 +6,20 @@ plugins {
 apply(plugin = "java")
 apply(plugin = "kotlin")
 
-// Defines what version of Java to use.
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
 }
 
-// Defines how Kotlin should compile.
 tasks.compileKotlin {
-//    sourceCompatibility = "1.8"
-//    targetCompatibility = "1.8"
-
     kotlinOptions {
-        // Defines what JVM bytecode to use, 1.8 rather than 1.6
         jvmTarget = "1.8"
         apiVersion = "1.8"
         languageVersion = "1.8"
     }
 }
 
-// Defines how Kotlin should compile when testing.
-// Try to keep it the same as compileKotlin.
 tasks.compileTestKotlin {
-//    sourceCompatibility = "1.8"
-//    targetCompatibility = "1.8"
-
     kotlinOptions {
-        // Defines what JVM bytecode to use, 1.8 rather than 1.6
         jvmTarget = "1.8"
         apiVersion = "1.8"
         languageVersion = "1.8"
@@ -41,11 +29,9 @@ tasks.compileTestKotlin {
 repositories {
     mavenLocal()
     mavenCentral()
-
     maven {
         url = uri("https://s3-eu-west-1.amazonaws.com/furhat-maven/releases")
     }
-
     maven {
         url = uri("https://repo.gradle.org/gradle/libs-releases")
     }
@@ -63,8 +49,7 @@ tasks.jar {
 
     manifest {
         attributes(
-            "Class-Path" to configurations.compileClasspath.get()
-                .joinToString(" ") { it.name },
+            "Class-Path" to configurations.compileClasspath.get().joinToString(" ") { it.name },
             "Main-Class" to "furhatos.app.$lowerCasedName.${normalizedName}Skill"
         )
     }
